@@ -21,7 +21,7 @@ app.get('/', (request, response) => {
   response.status(200).json({ data: 'Service is running!' });
 });
 
-// /items returns an array of all the menu items
+// /items returns an array with all menu items
 app.get('/items', (request, response) => {
   try {
     response.status(200).json({ data: menu });
@@ -35,8 +35,9 @@ app.get('/items', (request, response) => {
 app.get('/items/:id', (request, response) => {
   try {
     const { id } = request.params;
-    const menuItem = data.find((item) => item.id === id);
-
+    
+    const menuItem = menu.find((item) => item.id === id);
+    
     if (menuItem) {
       return response.status(200).json({ data: menuItem });
     }
